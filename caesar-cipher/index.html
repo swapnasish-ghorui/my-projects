@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caesar Cipher Web App</title>
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #121212;
+            color: #ffffff;
+            padding: 20px;
+            margin: 0;
+        }
+        .cipher-box {
+            max-width: 500px;
+            margin: 30px auto;
+            background-color: #000000;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.8);
+        }
+        h2 { margin-top: 0; color: #00ff66; border-bottom: 1px solid #222; padding-bottom: 10px; }
+        label { display: block; margin-top: 15px; color: #aaa; }
+        input, select { width: 100%; padding: 10px; background: #222; border: 1px solid #444; color: #fff; border-radius: 4px; box-sizing: border-box; font-family: inherit; }
+        button { margin-top: 20px; width: 100%; padding: 12px; background: #00ff66; border: none; color: #000; font-weight: bold; border-radius: 4px; cursor: pointer; font-family: inherit;}
+        button:hover { background: #00cc55; }
+        .result-box { margin-top: 20px; padding: 15px; background: #111; border-left: 4px solid #00ff66; display: none; }
+    </style>
+
+    <py-config>
+        [[fetch]]
+        files = ["cipher.py"]
+    </py-config>
+</head>
+<body>
+
+<div class="cipher-box">
+    <h2>Caesar Cipher App</h2>
+    
+    <label for="text-input">Enter Text:</label>
+    <input type="text" id="text-input" placeholder="Type secret message here...">
+
+    <label for="action-input">Action:</label>
+    <select id="action-input">
+        <option value="encrypt">Encrypt</option>
+        <option value="decrypt">Decrypt</option>
+    </select>
+
+    <label for="shift-input">Shift Number (1-25):</label>
+    <input type="number" id="shift-input" value="3" min="1" max="25">
+
+    <button id="run-btn">Process Text</button>
+
+    <div class="result-box" id="result-wrapper">
+        <strong>Result:</strong>
+        <p id="output-text" style="color: #00ff66; font-size: 1.2em; margin: 5px 0 0 0; font-weight: bold;"></p>
+    </div>
+</div>
+
+<script type="py">
+from pyscript import document
+import cipher
+
+def process_cipher(event):
+    text_value = document.querySelector("#text-input").value
+    action_value = document.querySelector("#action-input").value
+    shift_value = document.querySelector("#shift-input").value
+    
+    try:
+        shift_num = int(shift_value)
+        
+        # Check dropdown selection and call the correct function
+        if action_value == "encrypt":
+            result = cipher.encrypt(text_value, shift_num)
+        else:
+            result = cipher.decrypt(text_value, shift_num)
+        
+        # Display the output
+        document.querySelector("#output-text").innerText = result
+        document.querySelector("#result-wrapper").style.display = "block"
+    except Exception as e:
+        document.querySelector("#output-text").innerText = "An error occurred. Check your shift input."
+        document.querySelector("#result-wrapper").style.display = "block"
+
+document.querySelector("#run-btn").onclick = process_cipher
+</script>
+
+</body>
+</html>
