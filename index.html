@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swapnasish's Project Hub</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        h1 {
+            border-bottom: 2px solid #334155;
+            padding-bottom: 1rem;
+            color: #38bdf8;
+        }
+        p {
+            color: #94a3b8;
+        }
+        .project-list {
+            margin-top: 2rem;
+            display: grid;
+            gap: 1rem;
+        }
+        .project-card {
+            background-color: #1e293b;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid #334155;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .project-card:hover {
+            transform: translateY(-2px);
+            border-color: #38bdf8;
+        }
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #f1f5f9;
+            margin-bottom: 0.5rem;
+        }
+        .project-desc {
+            font-size: 0.95rem;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to My Project Hub</h1>
+    <p>A collection of applications and tools hosted right under a single subdomain path.</p>
+
+    <div class="project-list">
+        <!-- Project 1: Caesar Cipher -->
+        <a href="/caesar-cipher/" class="project-card">
+            <div class="project-title">🔐 Caesar Cipher</div>
+            <div class="project-desc">A Python-backed cryptographic tool to encrypt and decrypt text strings using shifting keys.</div>
+        </a>
+
+        <!-- Copy and paste the block below whenever you add a new project in the future! -->
+        <!-- 
+        <a href="/your-new-app-folder-name/" class="project-card">
+            <div class="project-title">🚀 Upcoming Project</div>
+            <div class="project-desc">Brief description of what your new project does.</div>
+        </a> 
+        -->
+    </div>
+
+</body>
+</html>
